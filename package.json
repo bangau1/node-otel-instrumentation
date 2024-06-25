@@ -1,18 +1,25 @@
 {
   "name": "node-otel-instrumentation",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "An otel instrumentation for node.js",
   "main": "index.js",
   "dependencies": {
     "@opentelemetry/api": "^1.9.0",
     "@opentelemetry/auto-instrumentations-node": "^0.47.0",
-    "@opentelemetry/sdk-node": "^0.52.0",
     "@opentelemetry/exporter-trace-otlp-http": "^0.52.0",
+    "@opentelemetry/sdk-node": "^0.52.0",
+    "@opentelemetry/sdk-trace-base": "^1.24.1",
     "@opentelemetry/sdk-trace-node": "^1.24.1",
-    "@opentelemetry/semantic-conventions": "^1.24.1",
-    "@opentelemetry/sdk-trace-base": "^1.24.1"
+    "@opentelemetry/semantic-conventions": "^1.24.1"
+  },
+  "devDependencies": {
+    "typescript": ">=4.7 <4.8"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "compile": "tsc",
+    "major": "yarn run compile && yarn publish --major",
+    "minor": "yarn run compile && yarn publish --minor",
+    "patch": "yarn run compile && yarn publish --patch"
   }
 }
