@@ -1,5 +1,6 @@
 import { getNodeAutoInstrumentations } from '@opentelemetry/auto-instrumentations-node';
 import { OTLPTraceExporter } from '@opentelemetry/exporter-trace-otlp-http';
+import * as api from '@opentelemetry/api';
 import { NodeSDK, resources } from '@opentelemetry/sdk-node';
 import { SEMRESATTRS_SERVICE_NAME } from '@opentelemetry/semantic-conventions';
 
@@ -9,6 +10,7 @@ const config = {
 };
 
 if (config.enabled) {
+    api.diag.setLogger(new api.DiagConsoleLogger(), api.DiagLogLevel.INFO);
     const sdk = new NodeSDK({
         resource: new resources.Resource({
             [SEMRESATTRS_SERVICE_NAME]: process.env.OTEL_SERVICE_NAME || 'unknown',
